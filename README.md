@@ -56,8 +56,4 @@ San Francisco, CA, USA
 
 
 ## Who do I talk to? ##
-<<<<<<< HEAD
 * Repo owner or admin (Artem Liashenko)
-=======
-* Repo owner or admin (Artem Liashenko)
->>>>>>> ae5708aa721247cbc09c74d70b52457c9e9f7da8
