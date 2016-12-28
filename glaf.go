@@ -13,6 +13,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"regexp"
+	"strconv"
 	"strings"
 )
 
@@ -23,8 +24,8 @@ type AddressComponent struct {
 }
 
 type Target struct {
-	Lat float32
-	Lng float32
+	Lat float64
+	Lng float64
 }
 
 type DoubleTarget struct {
@@ -54,7 +55,85 @@ type GeoData struct {
 
 //get Formated address
 func (gData GeoData) GetFormated() string {
+	if gData.Status != "OK" {
+		return "location not found"
+	}
+
 	return gData.Results[0].Formatted_address
+}
+
+//get Сoordinates from geocoding api response
+func (gData GeoData) GetСoordinates() string {
+
+	if gData.Status != "OK" {
+		return "location not found"
+	}
+
+	return strconv.FormatFloat(gData.Results[0].Geometry.Location.Lat, 'f', 10, 64) + ", " + strconv.FormatFloat(gData.Results[0].Geometry.Location.Lng, 'f', 10, 64)
+}
+
+//get Street number from geocoding api response (long version)
+func (gData GeoData) GetStreetNumLong() string {
+
+	if gData.Status != "OK" {
+		return "location not found"
+	}
+
+	for i := 0; i < len(gData.Results[0].Address_components); i++ {
+		if gData.Results[0].Address_components[i].Types[0] == "street_number" {
+			return gData.Results[0].Address_components[i].Long_name
+		}
+	}
+
+	return "Street Number (long) not found"
+}
+
+//get Street number from geocoding api response (short version)
+func (gData GeoData) GetStreetNumShort() string {
+
+	if gData.Status != "OK" {
+		return "location not found"
+	}
+
+	for i := 0; i < len(gData.Results[0].Address_components); i++ {
+		if gData.Results[0].Address_components[i].Types[0] == "street_number" {
+			return gData.Results[0].Address_components[i].Short_name
+		}
+	}
+
+	return "Street Number (short) not found"
+}
+
+//get Street from geocoding api response (long version)
+func (gData GeoData) GetStreetLong() string {
+
+	if gData.Status != "OK" {
+		return "location not found"
+	}
+
+	for i := 0; i < len(gData.Results[0].Address_components); i++ {
+		if gData.Results[0].Address_components[i].Types[0] == "route" {
+			return gData.Results[0].Address_components[i].Long_name
+		}
+	}
+
+	return "Street (long) not found"
+}
+
+//get Street from geocoding api response (short version)
+func (gData GeoData) GetStreetShort() string {
+
+	if gData.Status != "OK" {
+		return "location not found"
+	}
+
+	for i := 0; i < len(gData.Results[0].Address_components); i++ {
+		if gData.Results[0].Address_components[i].Types[0] == "route" {
+			return gData.Results[0].Address_components[i].Short_name
+		}
+	}
+
+	return "Street (short) not found"
 }
 
 //get City from geocoding api response (long version)
