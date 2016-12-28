@@ -30,7 +30,15 @@ import "fmt"
 import "glaf"
 
 func main() {
-	myVar := glaf.Unify("CA san francisco USA", "[API key]")
+	myVar := glaf.Unify("Myru St, 96, Kharkiv", "[API key]")
+	// or you can paste coordinates: 49.9371940, 36.4142605
+	// or paste it in another order: 96 myru str Kharkiv
+	// or paste it in another order: myru str Kharkiv 96
+	// or paste it in another order: myru 96 Kharkiv
+	fmt.Println(myVar.GetStreetNumLong())
+	fmt.Println(myVar.GetStreetNumShort())
+	fmt.Println(myVar.GetStreetLong())
+	fmt.Println(myVar.GetStreetShort())
 	fmt.Println(myVar.GetCityLong())
 	fmt.Println(myVar.GetCityShort())
 	fmt.Println(myVar.GetStateLong())
@@ -38,6 +46,7 @@ func main() {
 	fmt.Println(myVar.GetCountryLong())
 	fmt.Println(myVar.GetCountryShort())
 	fmt.Println(myVar.GetFormated())
+	fmt.Println(myVar.GetСoordinates())
 }
 ```
 
@@ -45,13 +54,18 @@ func main() {
 ####Output:####
 ```
 #!go
-San Francisco
-SF
-California
-CA
-United States
-US
-San Francisco, CA, USA
+96
+96
+Myru Street
+Myru St
+Kharkiv
+Kharkiv
+Kharkiv Oblast
+Kharkiv Oblast
+Ukraine
+UA
+Myru St, 96, Kharkiv, Kharkiv Oblast, Ukraine
+49.9371940000, 36.4142150000
 ```
 
 
