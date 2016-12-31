@@ -7,6 +7,7 @@ GLAF (Google location address formatter) - easily unify free-format locations wi
 #### Golang packages: ####
 * encoding/json
 * io/ioutil
+* errors
 * net/http
 * regexp
 * strings
@@ -54,18 +55,18 @@ func main() {
 ####Output:####
 ```
 #!go
-96
-96
-Myru Street
-Myru St
-Kharkiv
-Kharkiv
-Kharkiv Oblast
-Kharkiv Oblast
-Ukraine
-UA
-Myru St, 96, Kharkiv, Kharkiv Oblast, Ukraine
-49.9371940000, 36.4142150000
+96 <nil>
+96 <nil>
+Myru Street <nil>
+Myru St <nil>
+Kharkiv <nil>
+Kharkiv <nil>
+Kharkiv Oblast <nil>
+Kharkiv Oblast <nil>
+Ukraine <nil>
+UA <nil>
+Myru St, 96, Kharkiv, Kharkiv Oblast, Ukraine <nil>
+49.9371940000, 36.4142605000 <nil>
 ```
 
 
