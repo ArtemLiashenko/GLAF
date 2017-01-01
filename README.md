@@ -17,7 +17,8 @@ GLAF (Google location address formatter) - easily unify free-format locations wi
 * Google API key ([How to get](https://developers.google.com/maps/documentation/geocoding/get-api-key))
 
 ## How to set it up: ##
-Rut with terminal: *$ go get bitbucket.org/Zilibuka/glaf*
+* Run with terminal: *$ go get bitbucket.org/Zilibuka/glaf*
+* Import "glaf" in your program
 
 ## Example: ##
 
