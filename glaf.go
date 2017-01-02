@@ -73,7 +73,7 @@ func (gData *GeoData) GetСoordinates() (string, error) {
 	return strconv.FormatFloat(gData.Results[0].Geometry.Location.Lat, 'f', 10, 64) + ", " + strconv.FormatFloat(gData.Results[0].Geometry.Location.Lng, 'f', 10, 64), nil
 }
 
-//get Street number from geocoding api response (long version)
+//GetStreetNumLong - get Street number from geocoding api response (long version)
 func (gData *GeoData) GetStreetNumLong() (string, error) {
 
 	if gData.Status != "OK" {
@@ -89,7 +89,7 @@ func (gData *GeoData) GetStreetNumLong() (string, error) {
 	return "", errors.New("Street Number (long) not found")
 }
 
-//get Street number from geocoding api response (short version)
+//GetStreetNumShort - get Street number from geocoding api response (short version)
 func (gData *GeoData) GetStreetNumShort() (string, error) {
 
 	if gData.Status != "OK" {
@@ -105,7 +105,7 @@ func (gData *GeoData) GetStreetNumShort() (string, error) {
 	return "", errors.New("Street Number (short) not found")
 }
 
-//get Street from geocoding api response (long version)
+//GetStreetLong - get Street from geocoding api response (long version)
 func (gData *GeoData) GetStreetLong() (string, error) {
 
 	if gData.Status != "OK" {
@@ -121,7 +121,7 @@ func (gData *GeoData) GetStreetLong() (string, error) {
 	return "", errors.New("Street (long) not found")
 }
 
-//get Street from geocoding api response (short version)
+//GetStreetShort - get Street from geocoding api response (short version)
 func (gData *GeoData) GetStreetShort() (string, error) {
 
 	if gData.Status != "OK" {
@@ -137,7 +137,7 @@ func (gData *GeoData) GetStreetShort() (string, error) {
 	return "", errors.New("Street (short) not found")
 }
 
-//get City from geocoding api response (long version)
+//GetCityLong - get City from geocoding api response (long version)
 func (gData *GeoData) GetCityLong() (string, error) {
 
 	if gData.Status != "OK" {
@@ -153,7 +153,7 @@ func (gData *GeoData) GetCityLong() (string, error) {
 	return "", errors.New("city (long) not found")
 }
 
-//get City from geocoding api response (short version)
+//GetCityShort - get City from geocoding api response (short version)
 func (gData *GeoData) GetCityShort() (string, error) {
 
 	if gData.Status != "OK" {
@@ -169,7 +169,7 @@ func (gData *GeoData) GetCityShort() (string, error) {
 	return "", errors.New("city (short) not found")
 }
 
-//get State from geocoding api response (long version)
+//GetStateLong - get State from geocoding api response (long version)
 func (gData *GeoData) GetStateLong() (string, error) {
 
 	if gData.Status != "OK" {
@@ -185,7 +185,7 @@ func (gData *GeoData) GetStateLong() (string, error) {
 	return "", errors.New("state (long) not found")
 }
 
-//get State from geocoding api response (short version)
+//GetStateShort - get State from geocoding api response (short version)
 func (gData *GeoData) GetStateShort() (string, error) {
 
 	if gData.Status != "OK" {
@@ -201,7 +201,7 @@ func (gData *GeoData) GetStateShort() (string, error) {
 	return "", errors.New("state (long) not found")
 }
 
-//get Country from geocoding api response (long version)
+//GetCountryLong - get Country from geocoding api response (long version)
 func (gData *GeoData) GetCountryLong() (string, error) {
 
 	if gData.Status != "OK" {
@@ -217,7 +217,7 @@ func (gData *GeoData) GetCountryLong() (string, error) {
 	return "", errors.New("country (long) not found")
 }
 
-//get Country from geocoding api response (short version)
+//GetCountryShort - get Country from geocoding api response (short version)
 func (gData *GeoData) GetCountryShort() (string, error) {
 
 	if gData.Status != "OK" {
@@ -233,7 +233,7 @@ func (gData *GeoData) GetCountryShort() (string, error) {
 	return "", errors.New("country (short) not found")
 }
 
-//prepare and send request to geocoding api then get response and make srtuct from json
+//Unify - prepare and send request to geocoding api then get response and make srtuct from json
 func Unify(locStr string, apiKey string) GeoData {
 
 	spaces, _ := regexp.Compile(" ")
