@@ -18,22 +18,26 @@ import (
 	"strings"
 )
 
+// AddressComponent - geocodding API returned JSON object with administrative area info
 type AddressComponent struct {
 	Long_name  string
 	Short_name string
 	Types      []string
 }
 
+// Target - geocodding API returned JSON object with coordinates Lat & Lng
 type Target struct {
 	Lat float64
 	Lng float64
 }
 
+// DoubleTarget - geocodding API returned JSON object with coordinates
 type DoubleTarget struct {
 	Northeast Target
 	Southwest Target
 }
 
+// Geometry - geocodding API returned JSON object with coordinates (main)
 type Geometry struct {
 	Bounds        DoubleTarget
 	Location      Target
@@ -41,6 +45,7 @@ type Geometry struct {
 	Viewport      DoubleTarget
 }
 
+// Result - geocodding API returned JSON object with geo data
 type Result struct {
 	Address_components []AddressComponent
 	Formatted_address  string
@@ -49,6 +54,7 @@ type Result struct {
 	Types              []string
 }
 
+// GeoData - geocodding API returned JSON main object
 type GeoData struct {
 	Results []Result
 	Status  string
