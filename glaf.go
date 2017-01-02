@@ -60,7 +60,7 @@ type GeoData struct {
 	Status  string
 }
 
-//GetСoordinates - get Formated address
+//GetFormated - get Formated address
 func (gData *GeoData) GetFormated() (string, error) {
 	if gData.Status != "OK" {
 		return "", errors.New("location not found")
