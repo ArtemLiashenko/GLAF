@@ -50,7 +50,7 @@ func main() {
 	fmt.Println(myVar.GetCountryLong())
 	fmt.Println(myVar.GetCountryShort())
 	fmt.Println(myVar.GetFormated())
-	fmt.Println(myVar.GetСoordinates())
+	fmt.Println(myVar.GetCoordinates())
 	
 /*
 Output:
