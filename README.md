@@ -48,12 +48,10 @@ func main() {
 	fmt.Println(myVar.GetCountryShort())
 	fmt.Println(myVar.GetFormated())
 	fmt.Println(myVar.GetСoordinates())
-}
-```
+	
+/*
+Output:
 
-
-####Output:####
-```go
 96 <nil>
 96 <nil>
 Myru Street <nil>
@@ -66,6 +64,9 @@ Ukraine <nil>
 UA <nil>
 Myru St, 96, Kharkiv, Kharkiv Oblast, Ukraine <nil>
 49.9371940000, 36.4142605000 <nil>
+*/	
+
+}
 ```
 
 
