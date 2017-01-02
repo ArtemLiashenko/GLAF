@@ -1,6 +1,6 @@
-# README #
+# GLAF (Google location address formatter) - easily unify free-format locations with google. #
 
-GLAF (Google location address formatter) - easily unify free-format locations with google.
+[![Go Report Card](https://goreportcard.com/badge/github.com/ArtemLiashenko/GLAF)](https://goreportcard.com/report/github.com/ArtemLiashenko/GLAF)
 
 ## Required: ##
 
