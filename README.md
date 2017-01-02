@@ -1,4 +1,5 @@
-# GLAF - easily unify free-format locations. #
+# GLAF #
+#### Package for easy unify locations with different formats. ####
 
 [![Go Report Card](https://goreportcard.com/badge/github.com/ArtemLiashenko/GLAF)](https://goreportcard.com/report/github.com/ArtemLiashenko/GLAF) 
 [![GoDoc](https://godoc.org/github.com/ArtemLiashenko/GLAF?status.svg)](https://godoc.org/github.com/ArtemLiashenko/GLAF)
