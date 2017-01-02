@@ -63,7 +63,7 @@ func (gData *GeoData) GetFormated() (string, error) {
 	return gData.Results[0].Formatted_address, nil
 }
 
-//get Сoordinates from geocoding api response
+//GetСoordinates - get Сoordinates from geocoding api response
 func (gData *GeoData) GetСoordinates() (string, error) {
 
 	if gData.Status != "OK" {
