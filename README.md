@@ -17,14 +17,13 @@ GLAF (Google location address formatter) - easily unify free-format locations wi
 * Google API key ([How to get](https://developers.google.com/maps/documentation/geocoding/get-api-key))
 
 ## How to set it up: ##
-* Run with terminal: *$ go get bitbucket.org/Zilibuka/glaf*
+* Run with terminal: *$ go get github.com/ArtemLiashenko/GLAF*
 * Import "glaf" in your program
 
 ## Example: ##
 
 
-```
-#!Go
+```go
 
 package main
 
@@ -54,8 +53,7 @@ func main() {
 
 
 ####Output:####
-```
-#!Go
+```go
 96 <nil>
 96 <nil>
 Myru Street <nil>
@@ -71,5 +69,8 @@ Myru St, 96, Kharkiv, Kharkiv Oblast, Ukraine <nil>
 ```
 
 
-#### Who do I talk to? ####
-* Repo owner or admin (Artem Liashenko)
+## Author ##
+Artem Liashenko <artem.liashenko@gmail.com>
+
+## License ##
+See [LICENSE](https://github.com/ArtemLiashenko/GLAF/blob/master/LICENSE)
