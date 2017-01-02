@@ -73,3 +73,6 @@ Myru St, 96, Kharkiv, Kharkiv Oblast, Ukraine <nil>
 
 ## Who do I talk to? ##
 * Repo owner or admin (Artem Liashenko)
+=======
+# GLAF
+GLAF (Google location address formatter) - easily unify free-format locations with google.
