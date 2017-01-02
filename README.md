@@ -55,7 +55,7 @@ func main() {
 
 ####Output:####
 ```
-#!go
+#!Go
 96 <nil>
 96 <nil>
 Myru Street <nil>
