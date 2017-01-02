@@ -63,7 +63,7 @@ type GeoData struct {
 //GetFormated - get Formated address
 func (gData *GeoData) GetFormated() (string, error) {
 	if gData.Status != "OK" {
-		return "", errors.New("location not found")
+		return "", errors.New(gData.Status)
 	}
 
 	return gData.Results[0].Formatted_address, nil
@@ -73,7 +73,7 @@ func (gData *GeoData) GetFormated() (string, error) {
 func (gData *GeoData) GetСoordinates() (string, error) {
 
 	if gData.Status != "OK" {
-		return "", errors.New("location not found")
+		return "", errors.New(gData.Status)
 	}
 
 	return strconv.FormatFloat(gData.Results[0].Geometry.Location.Lat, 'f', 10, 64) + ", " + strconv.FormatFloat(gData.Results[0].Geometry.Location.Lng, 'f', 10, 64), nil
@@ -83,7 +83,7 @@ func (gData *GeoData) GetСoordinates() (string, error) {
 func (gData *GeoData) GetStreetNumLong() (string, error) {
 
 	if gData.Status != "OK" {
-		return "", errors.New("location not found")
+		return "", errors.New(gData.Status)
 	}
 
 	for i := 0; i < len(gData.Results[0].Address_components); i++ {
@@ -92,14 +92,14 @@ func (gData *GeoData) GetStreetNumLong() (string, error) {
 		}
 	}
 
-	return "", errors.New("Street Number (long) not found")
+	return "", errors.New("NOT_FOUND")
 }
 
 //GetStreetNumShort - get Street number from geocoding api response (short version)
 func (gData *GeoData) GetStreetNumShort() (string, error) {
 
 	if gData.Status != "OK" {
-		return "", errors.New("location not found")
+		return "", errors.New(gData.Status)
 	}
 
 	for i := 0; i < len(gData.Results[0].Address_components); i++ {
@@ -108,14 +108,14 @@ func (gData *GeoData) GetStreetNumShort() (string, error) {
 		}
 	}
 
-	return "", errors.New("Street Number (short) not found")
+	return "", errors.New("NOT_FOUND")
 }
 
 //GetStreetLong - get Street from geocoding api response (long version)
 func (gData *GeoData) GetStreetLong() (string, error) {
 
 	if gData.Status != "OK" {
-		return "", errors.New("location not found")
+		return "", errors.New(gData.Status)
 	}
 
 	for i := 0; i < len(gData.Results[0].Address_components); i++ {
@@ -124,14 +124,14 @@ func (gData *GeoData) GetStreetLong() (string, error) {
 		}
 	}
 
-	return "", errors.New("Street (long) not found")
+	return "", errors.New("NOT_FOUND")
 }
 
 //GetStreetShort - get Street from geocoding api response (short version)
 func (gData *GeoData) GetStreetShort() (string, error) {
 
 	if gData.Status != "OK" {
-		return "", errors.New("location not found")
+		return "", errors.New(gData.Status)
 	}
 
 	for i := 0; i < len(gData.Results[0].Address_components); i++ {
@@ -140,14 +140,14 @@ func (gData *GeoData) GetStreetShort() (string, error) {
 		}
 	}
 
-	return "", errors.New("Street (short) not found")
+	return "", errors.New("NOT_FOUND")
 }
 
 //GetCityLong - get City from geocoding api response (long version)
 func (gData *GeoData) GetCityLong() (string, error) {
 
 	if gData.Status != "OK" {
-		return "", errors.New("location not found")
+		return "", errors.New(gData.Status)
 	}
 
 	for i := 0; i < len(gData.Results[0].Address_components); i++ {
@@ -156,14 +156,14 @@ func (gData *GeoData) GetCityLong() (string, error) {
 		}
 	}
 
-	return "", errors.New("city (long) not found")
+	return "", errors.New("NOT_FOUND")
 }
 
 //GetCityShort - get City from geocoding api response (short version)
 func (gData *GeoData) GetCityShort() (string, error) {
 
 	if gData.Status != "OK" {
-		return "", errors.New("location not found")
+		return "", errors.New(gData.Status)
 	}
 
 	for i := 0; i < len(gData.Results[0].Address_components); i++ {
@@ -172,14 +172,14 @@ func (gData *GeoData) GetCityShort() (string, error) {
 		}
 	}
 
-	return "", errors.New("city (short) not found")
+	return "", errors.New("NOT_FOUND")
 }
 
 //GetStateLong - get State from geocoding api response (long version)
 func (gData *GeoData) GetStateLong() (string, error) {
 
 	if gData.Status != "OK" {
-		return "", errors.New("location not found")
+		return "", errors.New(gData.Status)
 	}
 
 	for i := 0; i < len(gData.Results[0].Address_components); i++ {
@@ -188,14 +188,14 @@ func (gData *GeoData) GetStateLong() (string, error) {
 		}
 	}
 
-	return "", errors.New("state (long) not found")
+	return "", errors.New("NOT_FOUND")
 }
 
 //GetStateShort - get State from geocoding api response (short version)
 func (gData *GeoData) GetStateShort() (string, error) {
 
 	if gData.Status != "OK" {
-		return "", errors.New("location not found")
+		return "", errors.New(gData.Status)
 	}
 
 	for i := 0; i < len(gData.Results[0].Address_components); i++ {
@@ -204,14 +204,14 @@ func (gData *GeoData) GetStateShort() (string, error) {
 		}
 	}
 
-	return "", errors.New("state (long) not found")
+	return "", errors.New("NOT_FOUND")
 }
 
 //GetCountryLong - get Country from geocoding api response (long version)
 func (gData *GeoData) GetCountryLong() (string, error) {
 
 	if gData.Status != "OK" {
-		return "", errors.New("location not found")
+		return "", errors.New(gData.Status)
 	}
 
 	for i := 0; i < len(gData.Results[0].Address_components); i++ {
@@ -220,14 +220,14 @@ func (gData *GeoData) GetCountryLong() (string, error) {
 		}
 	}
 
-	return "", errors.New("country (long) not found")
+	return "", errors.New("NOT_FOUND")
 }
 
 //GetCountryShort - get Country from geocoding api response (short version)
 func (gData *GeoData) GetCountryShort() (string, error) {
 
 	if gData.Status != "OK" {
-		return "", errors.New("location not found")
+		return "", errors.New(gData.Status)
 	}
 
 	for i := 0; i < len(gData.Results[0].Address_components); i++ {
@@ -236,7 +236,7 @@ func (gData *GeoData) GetCountryShort() (string, error) {
 		}
 	}
 
-	return "", errors.New("country (short) not found")
+	return "", errors.New("NOT_FOUND")
 }
 
 //Unify - prepare and send request to geocoding api then get response and make srtuct from json
@@ -251,6 +251,7 @@ func Unify(locStr string, apiKey string) GeoData {
 	if httpGetErr == nil {
 		bytes, readAllErr := ioutil.ReadAll(resp.Body)
 		if readAllErr == nil {
+			fmt.Println(string(bytes))
 			err := json.Unmarshal([]byte(bytes), &geoResult)
 			if err != nil {
 				fmt.Println(err)
