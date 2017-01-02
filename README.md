@@ -1,4 +1,4 @@
-# GLAF - easily unify free-format locations with google. #
+# GLAF - easily unify free-format locations. #
 
 [![Go Report Card](https://goreportcard.com/badge/github.com/ArtemLiashenko/GLAF)](https://goreportcard.com/report/github.com/ArtemLiashenko/GLAF)
 
