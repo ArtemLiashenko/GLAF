@@ -1,11 +1,11 @@
 # GLAF #
-## Package for easy unify locations with different formats. ##
-## Good for unification of addresses when you parse various sources. ##
-## Good for using Google Maps Geolocation API in Golang. ##
-
 [![Go Report Card](https://goreportcard.com/badge/github.com/ArtemLiashenko/GLAF)](https://goreportcard.com/report/github.com/ArtemLiashenko/GLAF) 
 [![GoDoc](https://godoc.org/github.com/ArtemLiashenko/GLAF?status.svg)](https://godoc.org/github.com/ArtemLiashenko/GLAF)
 [![License](https://img.shields.io/aur/license/yaourt.svg)](https://github.com/ArtemLiashenko/GLAF/blob/master/LICENSE)
+
+## Package for easy unify locations with different formats. ##
+## Good for unification of addresses when you parse various sources. ##
+## Good for using Google Maps Geolocation API in Golang. ##
 
 ### Required: ###
 
