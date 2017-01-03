@@ -1,11 +1,11 @@
 # GLAF #
-#### Package for easy unify locations with different formats. ####
+## Package for easy unify locations with different formats. ##
 
 [![Go Report Card](https://goreportcard.com/badge/github.com/ArtemLiashenko/GLAF)](https://goreportcard.com/report/github.com/ArtemLiashenko/GLAF) 
 [![GoDoc](https://godoc.org/github.com/ArtemLiashenko/GLAF?status.svg)](https://godoc.org/github.com/ArtemLiashenko/GLAF)
 [![License](https://img.shields.io/aur/license/yaourt.svg)](https://github.com/ArtemLiashenko/GLAF/blob/master/LICENSE)
 
-## Required: ##
+### Required: ###
 
 #### Golang packages: ####
 * encoding/json
@@ -19,11 +19,11 @@
 #### Other: ####
 * Google API key ([How to get](https://developers.google.com/maps/documentation/geocoding/get-api-key))
 
-## How to set it up: ##
+### How to set it up: ###
 * Run with terminal: *$ go get github.com/ArtemLiashenko/GLAF*
 * Import "glaf" in your program
 
-## Example: ##
+### Example: ###
 
 
 ```go
@@ -73,8 +73,8 @@ Myru St, 96, Kharkiv, Kharkiv Oblast, Ukraine <nil>
 ```
 
 
-## Author ##
+### Author ###
 Artem Liashenko <artem.liashenko@gmail.com>
 
-## License ##
+### License ###
 See [LICENSE](https://github.com/ArtemLiashenko/GLAF/blob/master/LICENSE)
