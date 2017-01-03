@@ -14,6 +14,7 @@
 * io/ioutil
 * errors
 * net/http
+* net/url
 * regexp
 * strings
 * fmt (for debug only)

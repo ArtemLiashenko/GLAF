@@ -13,6 +13,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"net/url"
 	"regexp"
 	"strconv"
 	"strings"
@@ -242,19 +243,27 @@ func (gData *GeoData) GetCountryShort() (string, error) {
 //Unify - prepare and send request to geocoding api then get response and make srtuct from json
 func Unify(locStr string, apiKey string) GeoData {
 
+	var geoResult GeoData
 	spaces, _ := regexp.Compile(" ")
 	prLoc := spaces.ReplaceAllString(strings.TrimSpace(locStr), "+")
-	link := "https://maps.googleapis.com/maps/api/geocode/json?address=" + prLoc + "&key=" + apiKey
-	var geoResult GeoData
-	resp, httpGetErr := http.Get(link)
+	link, urlErr := url.Parse("https://maps.googleapis.com/maps/api/geocode/json")
 
-	if httpGetErr == nil {
-		bytes, readAllErr := ioutil.ReadAll(resp.Body)
-		if readAllErr == nil {
-			fmt.Println(string(bytes))
-			err := json.Unmarshal([]byte(bytes), &geoResult)
-			if err != nil {
-				fmt.Println(err)
+	if urlErr == nil {
+		linkQ := link.Query()
+		linkQ.Set("address", prLoc)
+		linkQ.Set("key", apiKey)
+		link.RawQuery = linkQ.Encode()
+
+		resp, httpGetErr := http.Get(link.String())
+		defer resp.Body.Close()
+
+		if httpGetErr == nil {
+			bytes, readAllErr := ioutil.ReadAll(resp.Body)
+			if readAllErr == nil {
+				err := json.Unmarshal([]byte(bytes), &geoResult)
+				if err != nil {
+					fmt.Println(err)
+				}
 			}
 		}
 	}
