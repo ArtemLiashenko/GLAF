@@ -15,9 +15,7 @@
 * errors
 * net/http
 * net/url
-* regexp
 * strings
-* fmt (for debug only)
 
 #### Other: ####
 * Google API key ([How to get](https://developers.google.com/maps/documentation/geocoding/get-api-key))
