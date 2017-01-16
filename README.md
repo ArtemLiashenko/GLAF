@@ -39,7 +39,7 @@ func main() {
 	// or you can paste coordinates: 49.9371940, 36.4142605
 	// or paste it in another order: 96 myru str Kharkiv
 	// or paste it in another order: myru str Kharkiv 96
-	// or paste it in another order: myru 96 Kharkiv
+	// or paste it in another order: mira 96 Kharkiv
 	fmt.Println(myVar.GetStreetNumLong())
 	fmt.Println(myVar.GetStreetNumShort())
 	fmt.Println(myVar.GetStreetLong())
