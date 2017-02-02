@@ -59,10 +59,33 @@ type GeoData struct {
 	Status  string
 }
 
+// Error reports an error and the operation that caused it.
+type Error struct {
+	Op  string
+	Err error
+}
+
+func (e *Error) Error() string { return e.Op + ": " + e.Err.Error() }
+
+//validateResponce - validate API responce
+func validateResponce(gData *GeoData) error {
+
+	if len(gData.Results) > 1 {
+		return errors.New("TOO_MANY_RESULTS")
+	}
+
+	if gData.Status != "OK" {
+		return errors.New(gData.Status)
+	}
+
+	return nil
+}
+
 //GetFormated - get Formated address
 func (gData *GeoData) GetFormated() (string, error) {
-	if gData.Status != "OK" {
-		return "", errors.New(gData.Status)
+
+	if validateResponce(gData) != nil {
+		return "", &Error{"validateResponce", validateResponce(gData)}
 	}
 
 	return gData.Results[0].Formatted_address, nil
@@ -71,171 +94,187 @@ func (gData *GeoData) GetFormated() (string, error) {
 //GetСoordinates - get Сoordinates from geocoding api response
 func (gData *GeoData) GetСoordinates() (string, error) {
 
-	if gData.Status != "OK" {
-		return "", errors.New(gData.Status)
+	if validateResponce(gData) != nil {
+		return "", &Error{"validateResponce", validateResponce(gData)}
 	}
 
 	return strconv.FormatFloat(gData.Results[0].Geometry.Location.Lat, 'f', 10, 64) + ", " + strconv.FormatFloat(gData.Results[0].Geometry.Location.Lng, 'f', 10, 64), nil
 }
 
-//GetStreetNumLong - get Street number from geocoding api response (long version)
-func (gData *GeoData) GetStreetNumLong() (string, error) {
+//GetPostCode - get Postal code from geocoding api response
+func (gData *GeoData) GetPostCode() (string, error) {
 
-	if gData.Status != "OK" {
-		return "", errors.New(gData.Status)
+	if validateResponce(gData) != nil {
+		return "", &Error{"validateResponce", validateResponce(gData)}
 	}
 
-	for i := 0; i < len(gData.Results[0].Address_components); i++ {
-		if gData.Results[0].Address_components[i].Types[0] == "street_number" {
-			return gData.Results[0].Address_components[i].Long_name, nil
+	for _, addrComp := range gData.Results[0].Address_components {
+		if addrComp.Types[0] == "postal_code" {
+			return addrComp.Long_name, nil
 		}
 	}
 
-	return "", errors.New("NOT_FOUND")
+	return "", &Error{"GetPostCode", errors.New("NO_RESULT")}
+}
+
+//GetStreetNumLong - get Street number from geocoding api response (long version)
+func (gData *GeoData) GetStreetNumLong() (string, error) {
+
+	if validateResponce(gData) != nil {
+		return "", &Error{"validateResponce", validateResponce(gData)}
+	}
+
+	for _, addrComp := range gData.Results[0].Address_components {
+		if addrComp.Types[0] == "street_number" {
+			return addrComp.Long_name, nil
+		}
+	}
+
+	return "", &Error{"GetStreetNumLong", errors.New("NO_RESULT")}
 }
 
 //GetStreetNumShort - get Street number from geocoding api response (short version)
 func (gData *GeoData) GetStreetNumShort() (string, error) {
 
-	if gData.Status != "OK" {
-		return "", errors.New(gData.Status)
+	if validateResponce(gData) != nil {
+		return "", &Error{"validateResponce", validateResponce(gData)}
 	}
 
-	for i := 0; i < len(gData.Results[0].Address_components); i++ {
-		if gData.Results[0].Address_components[i].Types[0] == "street_number" {
-			return gData.Results[0].Address_components[i].Short_name, nil
+	for _, addrComp := range gData.Results[0].Address_components {
+		if addrComp.Types[0] == "street_number" {
+			return addrComp.Short_name, nil
 		}
 	}
 
-	return "", errors.New("NOT_FOUND")
+	return "", &Error{"GetStreetNumShort", errors.New("NO_RESULT")}
 }
 
 //GetStreetLong - get Street from geocoding api response (long version)
 func (gData *GeoData) GetStreetLong() (string, error) {
 
-	if gData.Status != "OK" {
-		return "", errors.New(gData.Status)
+	if validateResponce(gData) != nil {
+		return "", &Error{"validateResponce", validateResponce(gData)}
 	}
 
-	for i := 0; i < len(gData.Results[0].Address_components); i++ {
-		if gData.Results[0].Address_components[i].Types[0] == "route" {
-			return gData.Results[0].Address_components[i].Long_name, nil
+	for _, addrComp := range gData.Results[0].Address_components {
+		if addrComp.Types[0] == "route" {
+			return addrComp.Long_name, nil
 		}
 	}
 
-	return "", errors.New("NOT_FOUND")
+	return "", &Error{"GetStreetLong", errors.New("NO_RESULT")}
 }
 
 //GetStreetShort - get Street from geocoding api response (short version)
 func (gData *GeoData) GetStreetShort() (string, error) {
 
-	if gData.Status != "OK" {
-		return "", errors.New(gData.Status)
+	if validateResponce(gData) != nil {
+		return "", &Error{"validateResponce", validateResponce(gData)}
 	}
 
-	for i := 0; i < len(gData.Results[0].Address_components); i++ {
-		if gData.Results[0].Address_components[i].Types[0] == "route" {
-			return gData.Results[0].Address_components[i].Short_name, nil
+	for _, addrComp := range gData.Results[0].Address_components {
+		if addrComp.Types[0] == "route" {
+			return addrComp.Short_name, nil
 		}
 	}
 
-	return "", errors.New("NOT_FOUND")
+	return "", &Error{"GetStreetShort", errors.New("NO_RESULT")}
 }
 
 //GetCityLong - get City from geocoding api response (long version)
 func (gData *GeoData) GetCityLong() (string, error) {
 
-	if gData.Status != "OK" {
-		return "", errors.New(gData.Status)
+	if validateResponce(gData) != nil {
+		return "", &Error{"validateResponce", validateResponce(gData)}
 	}
 
-	for i := 0; i < len(gData.Results[0].Address_components); i++ {
-		if gData.Results[0].Address_components[i].Types[0] == "locality" {
-			return gData.Results[0].Address_components[i].Long_name, nil
+	for _, addrComp := range gData.Results[0].Address_components {
+		if addrComp.Types[0] == "locality" {
+			return addrComp.Long_name, nil
 		}
 	}
 
-	return "", errors.New("NOT_FOUND")
+	return "", &Error{"GetCityLong", errors.New("NO_RESULT")}
 }
 
 //GetCityShort - get City from geocoding api response (short version)
 func (gData *GeoData) GetCityShort() (string, error) {
 
-	if gData.Status != "OK" {
-		return "", errors.New(gData.Status)
+	if validateResponce(gData) != nil {
+		return "", &Error{"validateResponce", validateResponce(gData)}
 	}
 
-	for i := 0; i < len(gData.Results[0].Address_components); i++ {
-		if gData.Results[0].Address_components[i].Types[0] == "locality" {
-			return gData.Results[0].Address_components[i].Short_name, nil
+	for _, addrComp := range gData.Results[0].Address_components {
+		if addrComp.Types[0] == "locality" {
+			return addrComp.Short_name, nil
 		}
 	}
 
-	return "", errors.New("NOT_FOUND")
+	return "", &Error{"GetCityShort", errors.New("NO_RESULT")}
 }
 
 //GetStateLong - get State from geocoding api response (long version)
 func (gData *GeoData) GetStateLong() (string, error) {
 
-	if gData.Status != "OK" {
-		return "", errors.New(gData.Status)
+	if validateResponce(gData) != nil {
+		return "", &Error{"validateResponce", validateResponce(gData)}
 	}
 
-	for i := 0; i < len(gData.Results[0].Address_components); i++ {
-		if gData.Results[0].Address_components[i].Types[0] == "administrative_area_level_1" {
-			return gData.Results[0].Address_components[i].Long_name, nil
+	for _, addrComp := range gData.Results[0].Address_components {
+		if addrComp.Types[0] == "administrative_area_level_1" {
+			return addrComp.Long_name, nil
 		}
 	}
 
-	return "", errors.New("NOT_FOUND")
+	return "", &Error{"GetStateLong", errors.New("NO_RESULT")}
 }
 
 //GetStateShort - get State from geocoding api response (short version)
 func (gData *GeoData) GetStateShort() (string, error) {
 
-	if gData.Status != "OK" {
-		return "", errors.New(gData.Status)
+	if validateResponce(gData) != nil {
+		return "", &Error{"validateResponce", validateResponce(gData)}
 	}
 
-	for i := 0; i < len(gData.Results[0].Address_components); i++ {
-		if gData.Results[0].Address_components[i].Types[0] == "administrative_area_level_1" {
-			return gData.Results[0].Address_components[i].Short_name, nil
+	for _, addrComp := range gData.Results[0].Address_components {
+		if addrComp.Types[0] == "administrative_area_level_1" {
+			return addrComp.Short_name, nil
 		}
 	}
 
-	return "", errors.New("NOT_FOUND")
+	return "", &Error{"GetStateShort", errors.New("NO_RESULT")}
 }
 
 //GetCountryLong - get Country from geocoding api response (long version)
 func (gData *GeoData) GetCountryLong() (string, error) {
 
-	if gData.Status != "OK" {
-		return "", errors.New(gData.Status)
+	if validateResponce(gData) != nil {
+		return "", &Error{"validateResponce", validateResponce(gData)}
 	}
 
-	for i := 0; i < len(gData.Results[0].Address_components); i++ {
-		if gData.Results[0].Address_components[i].Types[0] == "country" {
-			return gData.Results[0].Address_components[i].Long_name, nil
+	for _, addrComp := range gData.Results[0].Address_components {
+		if addrComp.Types[0] == "country" {
+			return addrComp.Long_name, nil
 		}
 	}
 
-	return "", errors.New("NOT_FOUND")
+	return "", &Error{"GetCountryLong", errors.New("NO_RESULT")}
 }
 
 //GetCountryShort - get Country from geocoding api response (short version)
 func (gData *GeoData) GetCountryShort() (string, error) {
 
-	if gData.Status != "OK" {
-		return "", errors.New(gData.Status)
+	if validateResponce(gData) != nil {
+		return "", &Error{"validateResponce", validateResponce(gData)}
 	}
 
-	for i := 0; i < len(gData.Results[0].Address_components); i++ {
-		if gData.Results[0].Address_components[i].Types[0] == "country" {
-			return gData.Results[0].Address_components[i].Short_name, nil
+	for _, addrComp := range gData.Results[0].Address_components {
+		if addrComp.Types[0] == "country" {
+			return addrComp.Short_name, nil
 		}
 	}
 
-	return "", errors.New("NOT_FOUND")
+	return "", &Error{"GetCountryShort", errors.New("NO_RESULT")}
 }
 
 //Unify - prepare and send request to geocoding api then get response and make srtuct from json
